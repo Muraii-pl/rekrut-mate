@@ -1,5 +1,5 @@
 import { BelongsTo, Column, CreatedAt, DataType, ForeignKey, Model, Table, UpdatedAt } from 'sequelize-typescript';
-import User from './UserModel';
+import UserModel from './UserModel';
 import { Session } from '../../../domain/entities';
 
 @Table({
@@ -22,10 +22,10 @@ export default class SessionModel extends Model<Session> {
   @Column({
     type: DataType.UUID,
   })
-  @ForeignKey(() => User)
+  @ForeignKey(() => UserModel)
   declare userId: string;
 
-  @BelongsTo(() => User)
-  declare user: User;
+  @BelongsTo(() => UserModel)
+  declare user: UserModel;
 
 }

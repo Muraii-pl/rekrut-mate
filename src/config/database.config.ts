@@ -1,6 +1,5 @@
 
 const env = process.env.NODE_ENV || 'development';
-console.log(process.env.DB_NAME);
 const configDatabase = {
   development: {
     username: process.env.DB_USER,
@@ -25,3 +24,4 @@ const configDatabase = {
 
 export const getDatabaseConfig = () => configDatabase[env];
 
+export default configDatabase;

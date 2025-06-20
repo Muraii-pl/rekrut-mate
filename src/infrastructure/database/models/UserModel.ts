@@ -1,8 +1,8 @@
-import { Optional } from 'sequelize';
-import { Table, Column, DataType, CreatedAt, UpdatedAt, Model, HasMany } from 'sequelize-typescript';
+import { Column, CreatedAt, DataType, HasMany, Model, Table, UpdatedAt } from 'sequelize-typescript';
 import SessionModel from './SessionModel';
-import { User } from '../../../domain/entities/User';
-
+import { User } from '../../../domain/entities';
+import QuestionModel from './QuestionModel';
+import CommentModel from './CommentModel';
 
 
 @Table({
@@ -38,4 +38,10 @@ export default class UserModel extends Model<User> {
 
   @HasMany(() => SessionModel)
   declare sessions: SessionModel[];
+
+  @HasMany(() => QuestionModel)
+  declare questions: QuestionModel[];
+
+  @HasMany(() => CommentModel)
+  declare comments: CommentModel[];
 }
