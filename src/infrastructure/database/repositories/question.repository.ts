@@ -84,7 +84,7 @@ export const questionRepository: IQuestionRepository = {
       attributes: ['id'],
     });
     return await QuestionModel.findAll({
-      attributes: ['id', 'question', 'answer', 'createdAt'],
+      attributes: ['id', 'question', 'createdAt'],
       where: {
         id: {
           [Op.in]: matchingQuestionIdsResults.map(question => question.id)
@@ -103,7 +103,8 @@ export const questionRepository: IQuestionRepository = {
             attributes: [],
           },
         }
-      ]
+      ],
+      order: [['createdAt', 'DESC']]
     });
   },
   getById: async (id: string): Promise<QuestionModel> => {

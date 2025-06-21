@@ -6,7 +6,6 @@ export const toQuestionsDto = (questions: Question[]): GetQuestionsDto[] => {
     return {
       id: question.id,
       question: question.question,
-      answer: question.answer,
       createdAt: question.createdAt,
       author: {
         name: question['author'].name,
