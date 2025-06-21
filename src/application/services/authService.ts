@@ -3,6 +3,7 @@ import { getByEmail } from '../use-case/user/getUser';
 import { isTextMatch } from './hashService';
 import { createSession, updateSession } from '../use-case/session';
 import { getSession } from '../use-case/session/getSession';
+import { test } from '../../infrastructure/database/repositories/question.repository';
 
 export const login = async (credentials: LoginUserDto): Promise<string> => {
   const user = await getByEmail(credentials.email);
@@ -15,7 +16,7 @@ export const login = async (credentials: LoginUserDto): Promise<string> => {
   }
 };
 
-export const refreshSession = async (id: string): Promise<string> => {
+export const refreshSession = async (id: string): Promise<any> => {
   const session = await getSession(id);
   if ( session ) {
     await updateSession(id, session.userId);

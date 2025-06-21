@@ -49,11 +49,17 @@ export default class CommentModel extends Model<Comment> {
   })
   declare commentId: string | null;
 
-  @BelongsTo(() => CommentModel)
-  declare comment: CommentModel;
+  @BelongsTo(() => CommentModel, { foreignKey: 'commentId', as: 'parentComment' })
+  declare parentComment?: CommentModel;
+
+  @HasMany(() => CommentModel, { foreignKey: 'commentId', as: 'replies' })
+  declare replies?: CommentModel[];
 
   @BelongsTo(() => QuestionModel)
-  declare questions: QuestionModel[];
+  declare question: QuestionModel;
+
+  @BelongsTo(() => UserModel, {as: 'author'})
+  declare user: UserModel;
 
   @CreatedAt
   declare createdAt: Date;

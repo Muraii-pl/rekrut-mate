@@ -2,6 +2,7 @@ require('dotenv').config({ path: `${ process.cwd() }/.env` });
 import sequelize from './infrastructure/database/db-connection';
 import app from './app';
 
+
 const port = process.env.PORT || 3000;
 
 

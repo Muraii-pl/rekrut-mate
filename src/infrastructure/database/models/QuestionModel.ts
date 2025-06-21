@@ -4,7 +4,8 @@ import {
   Column,
   CreatedAt,
   DataType,
-  ForeignKey, HasMany,
+  ForeignKey,
+  HasMany,
   Model,
   Table,
   UpdatedAt
@@ -48,7 +49,7 @@ export default class QuestionModel extends Model<Question> {
   @UpdatedAt
   declare updatedAt: Date;
 
-  @BelongsTo(() => UserModel)
+  @BelongsTo(() => UserModel, { as: 'author' })
   declare user: UserModel;
 
   @HasMany(() => CommentModel)
@@ -56,5 +57,4 @@ export default class QuestionModel extends Model<Question> {
 
   @BelongsToMany(() => TagModel, () => QuestionTagModel)
   declare tags: TagModel[];
-
 }

@@ -1,5 +1,6 @@
 import authRoute from './auth.route';
 import { Router } from 'express';
+import questionRoute from './question.route';
 
 export const router = Router();
 
@@ -8,3 +9,4 @@ router.get('/live', (req, res) => {
 });
 
 router.use(authRoute);
+router.use(questionRoute);
