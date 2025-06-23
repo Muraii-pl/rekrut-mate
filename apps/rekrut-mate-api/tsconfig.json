@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noImplicitOverride": true,
+    "noImplicitAny": true,
+    "paths": {
+      "@config": ["src/config"]
+    }
+  },
+  "include": [],
+  "exclude": [],
+  "references": [
+    { "path": "./tsconfig.app.json"},
+    { "path": "./tsconfig.spec.json" },
+  ]
+}

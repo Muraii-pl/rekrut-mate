@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "target": "ESNext",
+    "module": "CommonJS",
+  },
+  "exclude": ["node_modules", "tmp"]
+}
