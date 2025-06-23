@@ -84,7 +84,7 @@ export const questionRepository: IQuestionRepository = {
       attributes: ['id'],
     });
     return await QuestionModel.findAll({
-      attributes: ['id', 'question', 'createdAt'],
+      attributes: ['slug', 'question', 'createdAt'],
       where: {
         id: {
           [Op.in]: matchingQuestionIdsResults.map(question => question.id)
@@ -107,29 +107,61 @@ export const questionRepository: IQuestionRepository = {
       order: [['createdAt', 'DESC']]
     });
   },
-  getById: async (id: string): Promise<QuestionModel> => {
+  getBySlug: async (slug: string): Promise<QuestionModel> => {
     return await QuestionModel.findOne({
-      attributes: ['id', 'question', 'answer', 'createdAt'],
+      attributes: ['question', 'answer', 'createdAt'],
       where: {
-        id
+        slug
       },
       include: [
         {
           model: UserModel,
           as: 'author',
-          attributes: ['name'],
         },
         {
           model: TagModel,
           attributes: ['name'],
-        }
-      ]
+          order: [['name', 'DESC']],
+        },
+        {
+          model: CommentModel,
+          as: 'comments',
+          attributes: ['content'],
+          include: [
+            {
+              model: CommentModel,
+              as: 'replies',
+              attributes: ['content'],
+              include: [
+                {
+                  model: UserModel,
+                }
+              ]
+            }]
+        }]
     });
   },
-  create(question: Omit<Question, "id">, userId: string): Promise<Question> {
-    return QuestionModel.create({
-      ...question,
-      userId
+  async create(question: Omit<Question, "id">, tags: string[]): Promise<any> {
+    const createdQuestion = await QuestionModel.create(question);
+
+    const findOrCreatePromises = tags.map(async (tag) => {
+      const [tagInstance, _] = await TagModel.findOrCreate({
+        where: {
+          name: tag
+        },
+      });
+      return tagInstance;
+    });
+    const tagsResult$ = await Promise.all(findOrCreatePromises);
+
+    await createdQuestion.$set('tags', tagsResult$);
+    return await this.getBySlug(createdQuestion.slug);
+  },
+  countBySlug(slug: string): Promise<number> {
+    return QuestionModel.count({
+      where: {
+        slug: { [Op.like]: `${ slug }%` }
+      }
     });
   }
 };

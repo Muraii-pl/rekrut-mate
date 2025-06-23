@@ -13,16 +13,24 @@ export interface IQuestionRepository {
   /**
    * Finds a question by its ID.
    *
-   * @param id - The ID of the question to find.
+   * @param slug - The slug of the question to find.
    * @returns A promise that resolves with the question with the given ID, or null if no question exists.
    */
-  getById(id: string): Promise<Question | null>;
+  getBySlug(slug: string): Promise<Question | null>;
   /**
    * Creates a new question with the given details.
    *
    * @param question - The details of the question to create.
-   * @param userId - The ID of the user creating the question.
+   * @param tags
    * @returns A promise that resolves with the created question.
    */
-  create(question: Omit<Question, 'id'>, userId: string): Promise<Question>;
+  create(question: Omit<Question, 'id' | 'createdAt' | 'updatedAt'>, tags: string[]): Promise<Question>;
+
+  /**
+   * Counts the number of questions with the given slug.
+   *
+   * @param slug - The slug to count questions for.
+   * @returns A promise that resolves with the number of questions with the given slug.
+   */
+  countBySlug(slug: string): Promise<number>;
 }

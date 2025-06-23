@@ -5,7 +5,7 @@ import {
   CreatedAt,
   DataType,
   ForeignKey,
-  HasMany,
+  HasMany, Index,
   Model,
   Table,
   UpdatedAt
@@ -27,6 +27,13 @@ export default class QuestionModel extends Model<Question> {
     defaultValue: DataType.UUIDV4
   })
   declare id: string;
+
+  @Index
+  @Column({
+    type: DataType.STRING,
+    unique: true,
+  })
+  declare slug: string;
 
   @Column({
     type: DataType.STRING,

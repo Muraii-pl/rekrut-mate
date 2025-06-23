@@ -11,7 +11,6 @@ import { NextFunction, Request, Response } from 'express';
  * @returns {void}
  */
 export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction): void => {
-  console.dir(err);
   res.status(500).json({
     status: 500,
     message: "Something went wrong",

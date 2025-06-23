@@ -1,7 +1,7 @@
 
 export interface GetQuestionsDto {
-  id: string;
   question: string;
+  slug: string;
   createdAt: Date;
   tags: string[];
   author: {

@@ -12,5 +12,19 @@ export const tagRepository: ITagRepository = {
         name
       }
     });
+  },
+  create: async (tag: string): Promise<IdName> => {
+    return await TagModel.create(tag);
+  },
+  findOrCreate: async (tag: string): Promise<IdName> => {
+    const [result] = await TagModel.findOrCreate({
+      where: {
+        name: tag
+      },
+      defaults: {
+        name: tag
+      }
+    });
+    return result;
   }
 };
