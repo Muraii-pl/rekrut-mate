@@ -72,7 +72,6 @@ rekrut-mate/
 - **Testing**: Jest
 - **Linting**: ESLint + Prettier
 - **Package Manager**: npm
-- **Runtime**: Zone.js
 
 ### Backend (rekrut-mate-api)
 - **Runtime**: Node.js 18+

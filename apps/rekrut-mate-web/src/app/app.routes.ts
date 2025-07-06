@@ -3,6 +3,7 @@ import { authGuard } from './core/providers/auth.guard';
 import { AuthService } from './core/providers/auth.service';
 import { inject } from '@angular/core';
 import { take } from 'rxjs';
+import { questionResolver } from './routes/home/question.resolver';
 
 export const appRoutes: Route[] = [
   {
@@ -37,6 +38,9 @@ export const appRoutes: Route[] = [
   {
     path: 'question/:slug',
     loadComponent: () => import('./routes/home/question/question.page').then(m => m.QuestionPage),
+    resolve: {
+      question: questionResolver
+    }
   },
   {
     path: '**',

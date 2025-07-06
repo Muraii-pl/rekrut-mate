@@ -20,4 +20,11 @@ export class QuestionRepository {
       },
     );
   }
+
+  public getBySlug(slug: string): Observable<Results<Question>> {
+    return this._http.get<Results<Question>>(
+      `${ this._baseUrl }/${ slug }`,
+      { withCredentials: true }
+    );
+  }
 }
