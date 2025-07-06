@@ -1,6 +1,5 @@
 import { Comment, CreateComment } from '../../domain/entities';
-import { CreateCommentDto } from '../dto/create-comment.dto';
-import { GetRepliesCommentDto } from '../dto/get-replies-comment.dto';
+import { CreateCommentDto, GetRepliesCommentDto } from '@rm/dtos';
 
 export const toCreateCommentEntity = (comment: CreateCommentDto, userId: string): CreateComment => {
   return {

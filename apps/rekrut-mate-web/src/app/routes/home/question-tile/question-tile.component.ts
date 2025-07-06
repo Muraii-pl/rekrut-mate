@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, input, InputSignal } from '@angular/core';
-import { Question } from '../../../core/interfaces/question.interface';
-import { DatePipe, TitleCasePipe } from '@angular/common';
+import { QuestionDto } from '@rm/dtos';
+import { CommonModule, DatePipe, TitleCasePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'rm-question-tile',
   imports: [
+    CommonModule,
     DatePipe,
     RouterLink,
     TitleCasePipe
@@ -16,5 +17,5 @@ import { RouterLink } from '@angular/router';
 })
 export class QuestionTileComponent {
 
-  public question: InputSignal<Question> = input.required();
+  public question: InputSignal<QuestionDto> = input.required();
 }

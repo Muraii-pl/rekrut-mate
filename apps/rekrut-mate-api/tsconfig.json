@@ -7,9 +7,6 @@
     "emitDecoratorMetadata": true,
     "noImplicitOverride": true,
     "noImplicitAny": true,
-    "paths": {
-      "@config": ["src/config"]
-    }
   },
   "include": [],
   "exclude": [],

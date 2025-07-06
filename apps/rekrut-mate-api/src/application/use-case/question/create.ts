@@ -1,7 +1,7 @@
-import { CreateQuestionDto } from '../../dto/create-question.dto';
 import { generateSlug } from '../../../shared/utils/generateSlug';
 import { questionRepository } from '../../../infrastructure/database/repositories/question.repository';
 import { toQuestionDto } from '../../mappers/questions.mapper';
+import { CreateQuestionDto } from '@rm/dtos';
 
 export const createUseCase = async (newQuestion: CreateQuestionDto, userId: string): Promise<CreateQuestionDto> => {
   let slug = generateSlug(newQuestion.question);

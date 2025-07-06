@@ -1,9 +1,9 @@
-import { Question } from './question.interface';
+import { QuestionDto } from '@rm/dtos';
 
 export interface QuestionStore {
   searchTerm: string;
   selectedTags: string[];
-  questions: Question[]
+  questions: QuestionDto[]
   isLoading: boolean;
   error: string | null
 }

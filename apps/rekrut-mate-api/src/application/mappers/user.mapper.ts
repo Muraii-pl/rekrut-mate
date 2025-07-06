@@ -1,5 +1,5 @@
-import { GetUserDto } from '../dto/get-user.dto';
-import { User } from '../../domain/entities/User';
+import { User } from '../../domain/entities';
+import { GetUserDto } from '@rm/dtos';
 
 export const toUserDto = (user: User): GetUserDto => {
   return {

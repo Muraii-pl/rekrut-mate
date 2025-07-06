@@ -8,6 +8,9 @@
     "importHelpers": true,
     "target": "ESNext",
     "module": "CommonJS",
+    "paths": {
+      "@rm/dtos": ["lib/dtos/src/index"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

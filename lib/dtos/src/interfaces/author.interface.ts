@@ -1,4 +1,4 @@
-export interface Author {
+export interface AuthorDto {
   id: string;
   name: string;
 }

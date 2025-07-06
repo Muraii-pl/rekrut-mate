@@ -2,7 +2,7 @@
   <section>
     <header>
       <div class="question-info">
-        <span>{{ question().author.name | titlecase }}</span>
+        <span>{{ question().author?.name | titlecase }}</span>
         <span>{{ question().createdAt | date: 'dd.MM.yyyy' }}</span>
       </div>
       <h2>{{ question().question }}</h2>
@@ -15,6 +15,9 @@
       </span>
     </footer>
     <span class="sr-only">Czytaj więcej o pytaniu: {{ question().question }}
-      autorstwa {{ question().author.name }}</span>
+      @if (question().author?.name) {
+        autorstwa {{ question().author.name }}
+      }
+    </span>
   </section>
 </a>

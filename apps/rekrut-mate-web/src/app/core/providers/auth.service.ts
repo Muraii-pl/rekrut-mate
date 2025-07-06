@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LoginCredentials } from '../interfaces/login-credentials.interface';
 import { BehaviorSubject, catchError, debounceTime, Observable, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { LoginCredentialsDto } from '@rm/dtos';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class AuthService {
     this.isAuthenticated$.next(localStorage.getItem('isAuthenticated') === 'true');
   }
 
-  public login(credentials: LoginCredentials): Observable<void> {
+  public login(credentials: LoginCredentialsDto): Observable<void> {
     return this._http.post<void>(
       `${ this._baseUrl }/login`,
       credentials,

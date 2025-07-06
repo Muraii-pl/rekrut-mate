@@ -1,10 +1,10 @@
-import { LoginUserDto } from '../dto/login-user.dto';
 import { getByEmail } from '../use-case/user/getUser';
 import { isTextMatch } from './hashService';
 import { closeSession, createSession, updateSession } from '../use-case/session';
 import { getSession } from '../use-case/session/getSession';
+import { LoginCredentialsDto } from '@rm/dtos';
 
-export const login = async (credentials: LoginUserDto): Promise<string> => {
+export const login = async (credentials: LoginCredentialsDto): Promise<string> => {
   const user = await getByEmail(credentials.email);
 
   if ( user && await isTextMatch(credentials.password, user.password) ) {

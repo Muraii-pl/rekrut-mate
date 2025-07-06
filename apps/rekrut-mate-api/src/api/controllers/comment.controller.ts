@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
-import { CreateCommentDto } from '../../application/dto/create-comment.dto';
 import { getSession } from '../../application/use-case/session/getSession';
 import { responseHandler } from '../../shared/utils/responseHandler';
 import { createUseCase } from '../../application/use-case/comment/create';
 import { getRepliesUseCase } from '../../application/use-case/comment/getReplies';
+import { CreateCommentDto } from '@rm/dtos';
 
 export const create = async (req: Request<{}, {}, CreateCommentDto>, res: Response, next: NextFunction) => {
   const { userId } = await getSession(req.cookies['session']);

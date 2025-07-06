@@ -1,8 +1,8 @@
-import { CreateUserDto } from '../../dto/create-user.dto';
 import { userRepository } from '../../../infrastructure/database/repositories/user.repository';
 import { hashText } from '../../services/hashService';
 import { toUserDto } from '../../mappers/user.mapper';
 import { getByEmail } from './getUser';
+import { CreateUserDto } from '@rm/dtos';
 
 export const createUserUseCase = async (user: CreateUserDto) => {
   const userExists = await getByEmail(user.email);

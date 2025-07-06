@@ -1,8 +1,7 @@
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import { inject } from '@angular/core';
 import { QuestionRepository } from '../../shared/services/api/question.repository';
-import { Results } from '../../core/interfaces/results.interface';
-import { Question } from '../../core/interfaces/question.interface';
+import { QuestionDetailsDto, QuestionDetailsResponse, Result } from '@rm/dtos';
 
 /**
  * A resolver that fetches a question by its slug.
@@ -11,7 +10,7 @@ import { Question } from '../../core/interfaces/question.interface';
  * @returns A promise that resolves with a `Results` object containing the question.
  *
  */
-export const questionResolver:ResolveFn<Results<Question>> = (route: ActivatedRouteSnapshot) => {
+export const questionResolver: ResolveFn<Result<QuestionDetailsDto>> = (route: ActivatedRouteSnapshot) => {
   const slug: string = route.paramMap.get('slug')!;
   const questionService = inject(QuestionRepository);
   return questionService.getBySlug(slug);

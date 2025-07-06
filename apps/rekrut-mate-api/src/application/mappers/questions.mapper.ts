@@ -1,8 +1,7 @@
-import { GetQuestionsDto } from '../dto/get-questions.dto';
 import { Question } from '../../domain/entities';
-import { GetQuestionDto } from '../dto/get-question.dto';
+import { QuestionDetailsDto, QuestionDto } from '@rm/dtos';
 
-export const toQuestionsDto = (questions: Question[]): GetQuestionsDto[] => {
+export const toQuestionsDto = (questions: Question[]): QuestionDto[] => {
   return questions.map((question) => {
     return {
       author: {
@@ -16,7 +15,7 @@ export const toQuestionsDto = (questions: Question[]): GetQuestionsDto[] => {
   });
 };
 
-export const toQuestionDto = (question: Question): GetQuestionDto => {
+export const toQuestionDto = (question: Question): QuestionDetailsDto => {
   return {
     question: question.question,
     slug: question.slug,

@@ -1,13 +1,14 @@
 import { NextFunction, Request, Response } from 'express';
 import { responseHandler } from '../../shared/utils/responseHandler';
-import { CreateUserDto } from '../../application/dto/create-user.dto';
-import { GetUserDto } from '../../application/dto/get-user.dto';
-import { IResponseHandler } from '../../shared/interfaces/response-handler.interface';
 import { createUserUseCase } from '../../application/use-case/user';
-import { LoginUserDto } from '../../application/dto/login-user.dto';
 import { login, logout, refreshSession } from '../../application/services/authService';
+import { LoginCredentialsDto, CreateUserDto, GetUserDto } from '@rm/dtos';
 
-export async function registerUser(req: Request<{}, {}, CreateUserDto>, res: Response<IResponseHandler<GetUserDto>>, next: NextFunction): Promise<void> {
+export async function registerUser(
+  req: Request<{}, {}, CreateUserDto>,
+  res: Response<GetUserDto>,
+  next: NextFunction
+): Promise<void> {
   try {
     const user = await createUserUseCase(req.body);
     responseHandler(res, 201, 'User created successfully', user);
@@ -16,7 +17,7 @@ export async function registerUser(req: Request<{}, {}, CreateUserDto>, res: Res
   }
 }
 
-export async function loginUser(req: Request<{}, {}, LoginUserDto>, res: Response, next: NextFunction): Promise<void> {
+export async function loginUser(req: Request<{}, {}, LoginCredentialsDto>, res: Response, next: NextFunction): Promise<void> {
   try {
     let session: string;
     if ( req.cookies.session ) {

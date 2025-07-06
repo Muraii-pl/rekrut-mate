@@ -10,3 +10,4 @@ coverage/
 
 .angular
 .cursor/rules/nx-rules.mdc
+/.vscode/

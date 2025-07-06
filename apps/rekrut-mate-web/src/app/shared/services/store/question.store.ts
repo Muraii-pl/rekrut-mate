@@ -4,7 +4,7 @@ import { computed, inject } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { QuestionRepository } from '../api/question.repository';
 import { debounceTime, distinctUntilChanged, lastValueFrom, tap } from 'rxjs';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 
 const initialQuestionState: IQuestionStore = {
   searchTerm: '',
@@ -20,10 +20,10 @@ export const QuestionStore = signalStore(
   withComputed(({ searchTerm, selectedTags }) => ({
     queryParams: computed(() => {
       let params = new HttpParams();
-      if ( searchTerm() ) {
+      if (searchTerm()) {
         params = params.set('search', searchTerm());
       }
-      if ( selectedTags().length ) {
+      if (selectedTags().length) {
         params = params.set('tags', selectedTags().join(','));
       }
       return params;
@@ -51,12 +51,13 @@ export const QuestionStore = signalStore(
   withHooks({
     onInit(store) {
       toObservable(store.queryParams)
-      .pipe(
-        debounceTime(500),
-        distinctUntilChanged((prev, next) => prev.toString() === next.toString()),
-        tap(() => store.getQuestions()))
-      .subscribe();
+        .pipe(
+          debounceTime(500),
+          distinctUntilChanged((prev, next) => prev.toString() === next.toString()),
+          takeUntilDestroyed(),
+          tap(() => store.getQuestions())
+        )
+        .subscribe();
     }
-  }),
+  })
 );
-

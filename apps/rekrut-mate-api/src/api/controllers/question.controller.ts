@@ -3,8 +3,8 @@ import { NextFunction, Request, Response } from 'express';
 import { responseHandler } from '../../shared/utils/responseHandler';
 import { getBySlugUseCase } from '../../application/use-case/question/getBySlug';
 import { getSession } from '../../application/use-case/session/getSession';
-import { CreateQuestionDto } from '../../application/dto/create-question.dto';
 import { createUseCase } from '../../application/use-case/question/create';
+import { CreateQuestionDto } from '@rm/dtos';
 
 export const getAllQuestions = async (req: Request, res: Response, next: NextFunction) => {
   const { search, tags } = req.query;

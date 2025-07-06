@@ -1,8 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Question } from '../../../core/interfaces/question.interface';
 import { Observable } from 'rxjs';
-import { Results } from '../../../core/interfaces/results.interface';
+import { Result, QuestionDetailsDto, QuestionDto } from '@rm/dtos';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +10,8 @@ export class QuestionRepository {
   private readonly _baseUrl = './api/question';
   private readonly _http = inject(HttpClient);
 
-  public getAll(queryParams: HttpParams): Observable<Results<Question[]>> {
-    return this._http.get<Results<Question[]>>(
+  public getAll(queryParams: HttpParams): Observable<Result<QuestionDto[]>> {
+    return this._http.get<Result<QuestionDto[]>>(
       `${ this._baseUrl }/all`,
       {
         params: queryParams,
@@ -21,8 +20,8 @@ export class QuestionRepository {
     );
   }
 
-  public getBySlug(slug: string): Observable<Results<Question>> {
-    return this._http.get<Results<Question>>(
+  public getBySlug(slug: string): Observable<Result<QuestionDetailsDto>> {
+    return this._http.get<Result<QuestionDetailsDto>>(
       `${ this._baseUrl }/${ slug }`,
       { withCredentials: true }
     );
