@@ -1,7 +1,7 @@
 import { LoginUserDto } from '../dto/login-user.dto';
 import { getByEmail } from '../use-case/user/getUser';
 import { isTextMatch } from './hashService';
-import { createSession, updateSession } from '../use-case/session';
+import { closeSession, createSession, updateSession } from '../use-case/session';
 import { getSession } from '../use-case/session/getSession';
 
 export const login = async (credentials: LoginUserDto): Promise<string> => {
@@ -23,4 +23,8 @@ export const refreshSession = async (id: string): Promise<any> => {
   } else {
     throw new Error('Session expired');
   }
+};
+
+export const logout = async (id: string): Promise<void> => {
+  await closeSession(id);
 };

@@ -1,0 +1,23 @@
+<div style="width: 100%;">
+  <div>
+    <button mat-mini-fab (click)="openTagsModal()" color='primary' style="margin-right: 8px;">
+      <mat-icon fontIcon="filter_alt"></mat-icon>
+    </button>
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input
+        matInput
+        [ngModel]="questionStore.searchTerm()"
+        [ngModelOptions]="{updateOn: 'blur'}"
+        (ngModelChange)="search($event)"
+      />
+    </mat-form-field>
+  </div>
+</div>
+@defer (when !questionStore.isLoading()) {
+  @for (question of questionStore.questions(); track question.slug) {
+    <rm-question-tile [question]="question"/>
+  }
+} @loading (after 100ms; minimum 1s) {
+  Loading ...
+}

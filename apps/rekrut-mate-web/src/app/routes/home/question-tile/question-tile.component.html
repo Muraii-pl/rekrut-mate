@@ -1,0 +1,20 @@
+<a [routerLink]="['/question', question().slug]" class="question-card">
+  <section>
+    <header>
+      <div class="question-info">
+        <span>{{ question().author.name | titlecase }}</span>
+        <span>{{ question().createdAt | date: 'dd.MM.yyyy' }}</span>
+      </div>
+      <h2>{{ question().question }}</h2>
+    </header>
+    <footer class="footer">
+      <span class="tags">
+        @for (tag of question().tags; track tag; let last = $last) {
+          {{ tag }}@if (!last) {,}
+        }
+      </span>
+    </footer>
+    <span class="sr-only">Czytaj więcej o pytaniu: {{ question().question }}
+      autorstwa {{ question().author.name }}</span>
+  </section>
+</a>

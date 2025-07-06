@@ -5,7 +5,6 @@ import { toCommentEntity } from './toCommentEntity';
 import { toTagEntity } from './toTagEntity';
 
 export const toQuestionEntity = (model: QuestionModel): Question => {
-  console.log(model);
   return {
     id: model.id,
     question: model.question,

@@ -1,12 +1,11 @@
 import { Router } from 'express';
-import { loginUser, refreshUserSession, registerUser } from '../controllers/auth.controller';
+import { loginUser, logoutUser, refreshUserSession, registerUser } from '../controllers/auth.controller';
+import { authMiddleware } from '../middleware/auth.middleware';
 
 
 const router = Router();
 
-router.get('/api/auth/live', (_, res) => {
-  res.sendStatus(200);
-});
+
 /**
  * @swagger
  * /api/auth/register:
@@ -110,10 +109,11 @@ router.post('/api/auth/register', registerUser);
  *                       field:
  *                         type: string
  */
-
 router.post('/api/auth/login', loginUser);
-
+router.get('/api/auth/logout', authMiddleware, logoutUser);
 router.get('/api/auth/refresh', refreshUserSession);
-
+router.get('/api/auth/is-authenticated', authMiddleware, (req, res) => {
+  res.status(200).send({ message: 'Authenticated' });
+});
 
 export default router;

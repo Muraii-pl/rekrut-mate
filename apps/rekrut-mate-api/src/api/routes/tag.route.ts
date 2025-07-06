@@ -1,8 +1,8 @@
-import { refreshUserSession } from '../controllers/auth.controller';
 
 import router from './auth.route';
+import { getAllTags } from '../controllers/tag.controller';
 
-router.get('/api/tag/all', refreshUserSession);
+router.get('/api/tag/all', getAllTags);
 
 
 

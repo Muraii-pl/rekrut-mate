@@ -1,0 +1,8 @@
+<header>
+  <h1>RekrutMate</h1>
+
+  <a [routerLink]="(isAuthenticated$ | async) ? ['/auth', 'logout'] : ['/auth', 'login']">
+    {{ (isAuthenticated$ | async) ? 'Wyloguj' : 'Zaloguj' }}
+  </a>
+
+</header>

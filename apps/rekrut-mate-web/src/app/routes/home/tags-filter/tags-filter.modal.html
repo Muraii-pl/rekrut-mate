@@ -1,0 +1,14 @@
+<h3 mat-dialog-title>
+  Filter by tags
+</h3>
+<mat-dialog-content>
+  @for (tag of tags; track tag) {
+    <mat-checkbox [checked]="selectedTags.includes(tag)" (change)="toggleTag(tag)" color="primary">
+      {{ tag }}
+    </mat-checkbox>
+  }
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="primary">Close</button>
+  <button mat-button [mat-dialog-close]="selectedTags" color="primary">Apply</button>
+</mat-dialog-actions>

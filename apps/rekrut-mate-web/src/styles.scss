@@ -1,0 +1,197 @@
+@use '@angular/material' as mat;
+
+// ====== Niestandardowe kolory ======
+$your-custom-primary: (
+  50: #e8f5e9,
+  100: #c8e6c9,
+  200: #a5d6a7,
+  300: #81c784,
+  400: #66bb6a,
+  500: #4CAF50,
+  600: #43a047,
+  700: #388E3C,
+  800: #2E7D32,
+  900: #1B5E20,
+  A100: #b9f6ca,
+  A200: #69f0ae,
+  A400: #00e676,
+  A700: #00c853,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
+    A700: rgba(black, 0.87),
+  )
+);
+
+$your-custom-accent: (
+  50: #ffe0b2,
+  100: #ffcc80,
+  200: #ffb74d,
+  300: #ffa726,
+  400: #ff9800,
+  500: #FFC107,
+  600: #fb8c00,
+  700: #f57c00,
+  800: #ef6c00,
+  900: #e65100,
+  A100: #ffd180,
+  A200: #ffab40,
+  A400: #ff9100,
+  A700: #ff6d00,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: rgba(black, 0.87),
+    700: rgba(black, 0.87),
+    800: rgba(black, 0.87),
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
+    A700: rgba(black, 0.87),
+  )
+);
+
+$your-custom-warn: (
+  50: #ffebee,
+  100: #ffcdd2,
+  200: #ef9a9a,
+  300: #e57373,
+  400: #ef5350,
+  500: #F44336,
+  600: #e53935,
+  700: #d32f2f,
+  800: #c62828,
+  900: #b71c1c,
+  A100: #ff8a80,
+  A200: #ff5252,
+  A400: #ff1744,
+  A700: #d50000,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+// ====== Tworzenie palet i motywu ======
+$qna-app-primary: mat.m2-define-palette($your-custom-primary);
+$qna-app-accent: mat.m2-define-palette($your-custom-accent, A200, A100, A400);
+$qna-app-warn: mat.m2-define-palette($your-custom-warn);
+
+$qna-app-theme: mat.m2-define-light-theme((
+  color: (
+    primary: $qna-app-primary,
+    accent: $qna-app-accent,
+    warn: $qna-app-warn,
+  ),
+  typography: mat.m2-define-typography-config(),
+  density: 0,
+));
+
+// ====== Wstrzykiwanie stylów Angular Material ======
+@include mat.all-component-themes($qna-app-theme);
+
+// ====== Dodatkowe zmienne CSS i style globalne ======
+:root {
+  --primary-color: #4CAF50;
+  --primary-hover-color: #45a049;
+  --background-light: #F4F4F4;
+  --text-dark: #333333;
+  --text-medium: #666666;
+  --border-light: #DDDDDD;
+  --card-background: white;
+  --tag-background: #e0f2f1;
+  --tag-color: #26a69a;
+  --tag-hover-background: #b2dfdb;
+  --info-background: #FFFDE7;
+  --info-border: #FFECB3;
+  --info-button-background: #FFC107;
+  --info-button-hover: #FFA000;
+  --footer-background: #333333;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure, figcaption, blockquote, dl, dd {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--background-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
