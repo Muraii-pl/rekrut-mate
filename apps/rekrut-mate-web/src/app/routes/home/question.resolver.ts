@@ -1,7 +1,8 @@
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import { inject } from '@angular/core';
 import { QuestionRepository } from '../../shared/services/api/question.repository';
-import { Question, Results } from '@rm/rekrut-mate-lib';
+import { Results } from '../../core/interfaces/results.interface';
+import { Question } from '../../core/interfaces/question.interface';
 
 /**
  * A resolver that fetches a question by its slug.

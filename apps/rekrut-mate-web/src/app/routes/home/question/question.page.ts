@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Question } from '@rm/rekrut-mate-lib';
+import { Question } from '../../../core/interfaces/question.interface';
 
 @Component({
   selector: 'rm-question',
