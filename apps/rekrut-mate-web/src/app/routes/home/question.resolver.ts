@@ -1,7 +1,7 @@
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import { inject } from '@angular/core';
 import { QuestionRepository } from '../../shared/services/api/question.repository';
-import { QuestionDetailsDto, QuestionDetailsResponse, Result } from '@rm/dtos';
+import { QuestionDetailsDto, Result } from '@rm/dtos';
 
 /**
  * A resolver that fetches a question by its slug.

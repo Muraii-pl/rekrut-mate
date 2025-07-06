@@ -57,7 +57,8 @@ rekrut-mate/
 │       │   │   └── core/     # Core services and providers
 │       │   └── assets/       # Static assets
 │
-├── tools/                   # Shared tools
+├── lib/                   # Shared libraries
+│   ├── dtos/              # Data Transfer Objects
 └── package.json             # Main dependencies
 ```
 
